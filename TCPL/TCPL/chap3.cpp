@@ -1,4 +1,6 @@
 #include"chap3.h"
+#include<string.h>
+
 
 int binsearch(int x, int v[], int n)
 {
@@ -39,7 +41,12 @@ void calc_chars(char digits[], int& nspace, int& nothers)
 }
 int trim(char s[])
 {
+	int n;
+	for (n = strlen(s) - 1; n >= 0; n--)
+	{
+		if(s[n]!='\n'&&s[n]!='\t'&&s[n]!=' ')
 
+	}
 }
 //3-2
 void escape(char s[], char t[])
