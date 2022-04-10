@@ -23,4 +23,5 @@ void itob(int n, char s[], int b);
 //3-6
 void itoa3(int n, char s[], int len);
 
-void getline(char in[], int limit);
+//读取一行，返回读取长度
+int getline(char in[], int limit);

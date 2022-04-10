@@ -26,6 +26,7 @@ int main()
 	}
 	printf("int len:%d\n", bitcount);
 	char s[33] = { 0 };
+	char s1[33] = { 0 };
 	itoa2(INT_MIN, s);
 	//itoa(-876134, s);
 	printf("%s\n", s);
@@ -41,6 +42,8 @@ int main()
 	printf("%d\n", -108 % -10);
 	printf("%u\n", -108 % 10);
 	printf("%d\n", 108 % 10);
+	itob(15, s1, 16);
+	printf("%s", s1);
 
 //end:
 	//printf("end\n");

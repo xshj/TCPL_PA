@@ -1,6 +1,7 @@
 #include"chap3.h"
 #include<string.h>
 #include<ctype.h>
+#include<stdio.h>
 
 
 int binsearch(int x, int v[], int n)
@@ -151,6 +152,17 @@ int atoi(char s[])
 	return n*sign;
 }
 
+
+void insertsort(int v[], int n)
+{
+
+}
+
+void insertsort(int v[], int n, int gap)
+{
+
+}
+
 void shellsort(int v[], int n)
 {
 
@@ -192,7 +204,6 @@ void expand(char s1[], char s2[])
 
 }
 
-
 //3-4
 #define abs(x)	((x)<0?-(x):(x))
 /*
@@ -215,17 +226,55 @@ void itoa2(int n, char s[])
 	s[i] = '\0';
 	reverse(s);
 }
-//3-5
+//3-5,将10进制转换为b进制，b属于[2,35],从10开始依次用a,b,c...等表示
 void itob(int n, char s[], int b)
 {
-
+	if (b < 2)	return;
+	int i = 0, sign = n;
+	do
+	{
+		int j = abs(n % b);
+		s[i++] = (j<=9)? j +'0':j-10+'a';
+	} while ((n/=b)!=0);
+	if (sign < 0)
+		s[i++] = '-';
+	s[i] = '\0';
+	reverse(s);
 }
 //3-6
+//将整数转换为字符串后，若长度小于len，则在字符串左边添加额外的空格
 void itoa3(int n, char s[], int len)
 {
-
+	int sign, i = 0;
+	sign = n;
+	do
+	{
+		s[i++] = abs(n % 10) + '0';
+	} while ((n/=10)!=0);
+	if (sign < 0)
+		s[i++] = '-';
+	for (; i < len; i++)
+	{
+		s[i] = ' ';
+	}
+	s[i] = '\0';
+	reverse(s);
 }
 
-void getline(char in[], int limit)
+
+//读取一行，返回读取长度
+int getline(char in[], int limit)
 {
+	int i,c;
+	for (i = 0; i < limit-1 && (c = getchar()) != EOF && c != '\n'; i++)
+	{
+		in[i] = c;
+	}
+	//如果是因为换行导致的结束，需要把换行符加入到数组
+	if (c == '\n')
+	{
+		in[i++] = c;
+	}
+	in[i] = '\0';
+	return i;
 }
