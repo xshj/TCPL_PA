@@ -171,14 +171,49 @@ void itoa(int n, char s[])
 {
 	//判断正负数
 	//然后挨个取余，再整除10,
-	int sign;
+	int sign,i=0;
 	if ((sign = n) < 0)	n = -n;
+	do
+	{
+		s[i++] = n % 10 + '0';
+	} while ((n/=10)>0);
+	if (sign < 0)
+		s[i++] = '-';
+	//以下是有问题的，因为reverse函数依赖'\0'，因此没有这个结束符，reverse会失败
+	//reverse(s);
+	//s[i] = '\0';
+	s[i] = '\0';
+	reverse(s);
 }
 
-//3-4
-void itoa2(int n, char s[])
+//3-3
+void expand(char s1[], char s2[])
 {
 
+}
+
+
+//3-4
+#define abs(x)	((x)<0?-(x):(x))
+/*
+* 请注意下面的宏定义
+* #define abs(x)	((x)<0?(-x):(x))
+* 这是错误的，宏只是替换，如果传的x是个表达式，那么只会将表达式的第一个变量前面
+* 添加一个负号
+*/
+
+void itoa2(int n, char s[])
+{
+	int sign, i = 0;
+	sign = n;
+	do
+	{
+		s[i++] = abs(n % 10) + '0';
+	} while ((n/=10)!=0);
+	if (sign < 0)
+		s[i++] = '-';
+	s[i] = '\0';
+	reverse(s);
 }
 //3-5
 void itob(int n, char s[], int b)
@@ -189,4 +224,8 @@ void itob(int n, char s[], int b)
 void itoa3(int n, char s[], int len)
 {
 
+}
+
+void getline(char in[], int limit)
+{
 }
