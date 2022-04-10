@@ -155,17 +155,43 @@ int atoi(char s[])
 
 void insertsort(int v[], int n)
 {
-
+	int i,j;
+	for (i = 1; i < n; i++)
+	{
+		int temp = v[i];
+		j = i - 1;
+		while (temp < v[j] && j >= 0)
+		{
+			v[j + 1] = v[j];
+			j--;
+		}
+		v[j + 1] = temp;
+	}
 }
 
-void insertsort(int v[], int n, int gap)
+void insertsort_gap(int v[], int n, int gap)
 {
-
+	int i, j;
+	for (i = gap; i < n; i += gap)
+	{
+		j = i - gap;
+		int temp =v[i];
+		while (temp < v[j] && j >= 0)
+		{
+			v[j + gap] = v[j];
+			j -= gap;
+		}
+		v[j + gap] = temp;
+	}
 }
 
 void shellsort(int v[], int n)
 {
-
+	int gap = n;
+	while ((gap /= 2) > 0)
+	{
+		insertsort_gap(v, n, gap);
+	}
 }
 void reverse(char s[])
 {
